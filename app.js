@@ -2,6 +2,11 @@ var express = require("express");
 
 var app = express();
 
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+app.use(methodOverride('_method'));
+app.use(bodyParser());
+
 var library = [];
 var id = 1;
 
@@ -18,7 +23,7 @@ app.get('/create_book', function(req,res){
 
 var book = {};
 book.bookTitle = req.query.bookTitle;
-book.bookAuthor = req.query.bookGenre;
+book.bookAuthor = req.query.bookAuthor;
 book.bookYear = req.query.bookYear;
 book.id = id;
 id++;
@@ -41,13 +46,32 @@ app.get('/read_book/:id', function(req,res){
 
 })
 
-app.get('update_book', function(req,res){
-//todo : implement the update book 
+app.put('/update_book/:id', function(req,res){
+
+console.log('trying to update')
+	library.forEach(function(book){
+  	if(book.id === Number(req.params.id)){
+  		 	
+  		book.bookTitle = req.body.bookTitle;
+  		book.bookAuthor = req.body.bookAuthor;
+  		book.bookYear = req.body.bookYear;
+  	
+  	
+  	}
+  })
+res.redirect("/")
 })
 
-app.get('delete_book', function(req,res){
-//todo : implement the delete book
+app.delete('/delete_book/:id', function(req, res) {
+	library.forEach(function(book){
+		if (book.id === Number(req.params.id)) {
+			var index = library.indexOf(book)
+			library.splice(index,1);
+		}
+	})
+	res.redirect("/")
 })
+
 
 app.listen(3000,function(){
 	console.log('on the moon!')

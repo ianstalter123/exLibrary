@@ -20,17 +20,36 @@
 	<button type="submit">create book</button>
 </form>
 
+
+
 <%library.forEach(function(book){%>
 <br>
 <%='Id: ' + book.id%>
 <br>
 <%='Title: ' + book.bookTitle%>
 <br>
-<%='Genre: ' + book.bookAuthor %>
+<%='Author: ' + book.bookAuthor %>
 <br>
-<%='Genre: ' + book.bookYear %>
+<%='Year: ' + book.bookYear %>
 <br>
+<form method="post" action="/delete_book/<%=book.id%>?_method=delete">
+		<input type="submit" name="delete" value = "delete">
+	</form>
+	<br>
+<form method="post" action="/update_book/<%=book.id%>?_method=put">
+Update this book's info:
+	New Title:
+	<input type = "text" name = "bookTitle">
+	New Author:
+	<input type = "text" name = "bookAuthor" >
+	New Year:
+	<input type = "text" name = "bookYear" >
+
+	<button type="submit">update book</button>
+	</form>
+	<br>
 ------------
+
 <%})%>
 
 </body>
