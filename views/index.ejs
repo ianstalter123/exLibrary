@@ -39,11 +39,11 @@
 <form method="post" action="/update_book/<%=book.id%>?_method=put">
 Update this book's info:
 	New Title:
-	<input type = "text" name = "bookTitle">
+	<input type = "text" name = "bookTitle" value ="<%=book.bookTitle%>">
 	New Author:
-	<input type = "text" name = "bookAuthor" >
+	<input type = "text" name = "bookAuthor" value ="<%=book.bookAuthor%>" >
 	New Year:
-	<input type = "text" name = "bookYear" >
+	<input type = "text" name = "bookYear" value ="<%=book.bookYear%>" >
 
 	<button type="submit">update book</button>
 	</form>
