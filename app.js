@@ -5,7 +5,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 app.use(methodOverride('_method'));
-app.use(bodyParser());
+app.use(bodyParser.urlencoded({extended: true}));
 
 var library = [];
 var id = 1;
